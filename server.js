@@ -5,7 +5,6 @@ const logger = require('morgan');
 const path = require('path');
 const router = require('./routes/index');
 const { auth } = require('express-openid-connect');
-
 dotenv.load();
 
 const app = express();
@@ -16,6 +15,7 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
+app.use(express.static('public'));
 
 const config = {
   authRequired: false,
