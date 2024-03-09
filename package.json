@@ -9,6 +9,7 @@
     "express-openid-connect": "^2.17.0",
     "googleapis": "^133.0.0",
     "http-errors": "~1.8.1",
+    "kintone-nodejs-sdk": "^0.1.2",
     "morgan": "~1.10.0"
   }
 }

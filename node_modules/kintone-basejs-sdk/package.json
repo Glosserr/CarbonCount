@@ -1,0 +1,32 @@
+{
+  "name": "kintone-basejs-sdk",
+  "version": "0.1.6",
+  "description": "The SDK of kintone REST API client use for kintone-nodejs-sdk and kintone-js-sdk",
+  "main": "src/kintone-basejs-sdk.js",
+  "scripts": {
+    "test": "mocha $(find test -name 'test.*.js')"
+  },
+  "engines": {
+    "node": ">=8.9.3"
+  },
+  "dependencies": {
+    "request": "^2.85.0",
+    "request-promise": "^4.2.2"
+  },
+  "devDependencies": {
+    "eslint": "^4.18.2",
+    "eslint-config-google": "^0.9.1",
+    "request": "^2.85.0",
+    "request-promise": "^4.2.2"
+  },
+  "keywords": [
+    "kintone",
+    "app",
+    "nodejs",
+    "cybozu",
+    "cybozu.com",
+    "kintone.com"
+  ],
+  "author": "Cybozu, Inc.",
+  "license": "MIT"
+}
