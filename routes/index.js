@@ -26,17 +26,4 @@ const kintone = require('kintone-nodejs-sdk');
 let kintoneAuthWithAPIToken = (new kintone.Auth()).setApiToken('A8mvHRY5yrVQhIkcTSDW9amw4bX3J4XfXv3U2cLm');
 let kintoneConnection = new kintone.Connection('your.FQDN.tld', kintoneAuthWithAPIToken);
 
-let kintoneRecord = new kintone.Record(kintoneConnection);
-
-let appID = {your_app_id};
-let recordID = {record_id_that_will_be_retrived};
-kintoneRecord.getRecord(appID, recordID)
-    .then((rsp) => {
-        console.log(rsp);
-    })
-    .catch((err) => {
-        // The promise function always reject with KintoneAPIExeption
-        console.log(err.get());
-    });
-
 module.exports = router;
