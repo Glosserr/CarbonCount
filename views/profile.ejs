@@ -5,12 +5,23 @@
   <% if (user.picture) { %>
     <img class="block py-3" src="<%= user.picture %>" width="300">
   <% } %>
-  
-  <p class="py-3">
-    This is the content of <code class="bg-gray-200">req.user</code>.<br>
-    <strong>Note:</strong> <code class="bg-gray-200">_raw</code> and <code class="bg-gray-200">_json</code> properties have been omitted.
-  </p>
+  <script>
+    // Initialize the map
+    function initMap() {
+      // Specify the coordinates for the center of the map
+      var center = { lat: 40.7128, lng: -74.006 };
+      // Create a new map object
+      var map = new google.maps.Map(document.getElementById('map'), {
+        center: center,
+        zoom: 12 // Adjust the zoom level as needed
+      });
+    }
+  </script>
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIaDjfnwKQRLp_ilAyl7urVNp5bIVPgxU&callback=initMap">
+</script>
 
-  <pre class="block bg-gray-300 p-4 text-sm overflow-scroll"><%= userProfile %></pre>
 
+<h3>Plan your next trip</h3>
+<div id="map" style="width: 100%; height: 400px;"></div> <!-- Set the dimensions of the map container -->
 <%- include('partials/footer') -%>
