@@ -59,5 +59,10 @@ http.createServer(app)
   .listen(port, () => {
     console.log(`Listening on ${config.baseURL}`);
   });
+<<<<<<< HEAD
+
+  
+=======
   module.exports = app;
  
+>>>>>>> 023d5538f508005185d36fa9197077db3018952a
