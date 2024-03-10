@@ -2,7 +2,7 @@ var router = require('express').Router();
 const request = require('request');
 const { requiresAuth } = require('express-openid-connect');
 const uploadedUsernames = new Set();
-var nick;
+var nick,travelTime,travelDistance;
 loadFromKintone();
 
 router.get('/', function (req, res, next) {
@@ -63,8 +63,12 @@ function loadFromKintone() {
               uploadedUsernames.add(record.username.value);
               if (record.username.value===nick)
               {
-                  console.log('Hi');
-              }
+                console.log('Trips loaded from Kintone:', record.trips.value);
+                console.log('Miles loaded from Kintone:', record.miles.value);
+                console.log('Emissions loaded from Kintone:', record.emissions.value);
+                console.log('Points loaded from Kintone:', record.points.value);
+                console.log(traveltime);
+              }   
           });
       } else {
           console.log('No records found in Kintone.');

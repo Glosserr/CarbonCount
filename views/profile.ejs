@@ -6,10 +6,10 @@
     <img class="block py-3" src="<%= user.picture %>" width="300">
   <% } %>
   <script>
-    var map;
+    var map,travelTime,travelDistance,profileUrl;
     const request = require('request');
 
-function initMap() {
+  function initMap() {
   // Initialize the map
   map = new google.maps.Map(document.getElementById('map'), {
     center: { lat: 40.7128, lng: -74.006 },
@@ -44,17 +44,16 @@ function calculateRoute() {
         // Display the route on the map
         directionsRenderer.setDirections(response);
         var route = response.routes[0];
-        var travelTime = route.legs[0].duration.text;
-        var travelDistance = route.legs[0].distance.text;
-
-        document.getElementById('travelTime').innerText = 'Travel Time: ' + travelTime;
-        document.getElementById('travelDistance').innerText = 'Travel Distance: ' + travelDistance;
+        travelTime = route.legs[0].duration.text;
+        travelDistance = route.legs[0].distance.text;
+        
       } 
       else {
         window.alert('Directions request failed due to ' + status);
       }
     }
   );
+  
 }
 
   </script>
