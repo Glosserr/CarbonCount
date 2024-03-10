@@ -138,4 +138,4 @@ function uploadToKintone(nick) {
     });
 }
 
-
+module.exports = app;
