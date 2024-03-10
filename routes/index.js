@@ -73,6 +73,7 @@ function uploadToKintone(nick) {
     console.log('Username already uploaded to Kintone:', nick);
     return;
   }
+  uploadedUsernames.add(nick);
   console.log('Uploading username to Kintone:', nick);
     // Kintone API endpoint
     const kintoneEndpoint = 'https://carboncount.kintone.com/k/v1/records.json';
@@ -86,25 +87,26 @@ function uploadToKintone(nick) {
     // Data to be uploaded
     const data = {
         'app': appId,
-        'records':
+        'records':[
             {
                 'username': {
                   'value': nick
                 },
                 'trips':{
-                  'value': '0'
+                  'value': 0.0
                 },
                 'miles':{
-                  'value': '0'
+                  'value': 0.0
                 },
                 'emissions':{
-                  'value': '0'
+                  'value': 0.0
                 },
                 'points':{
-                  'value': '0'
+                  'value': 0.0
                 }
 
             }
+          ]
     };
 
     // Make a POST request to upload data to Kintone

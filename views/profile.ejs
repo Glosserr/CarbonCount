@@ -7,10 +7,8 @@
   <% } %>
   <script>
     var map;
-
     const request = require('request');
-
-    function loadFromKintone() {
+    function loadFromKintone(){
     // Kintone API endpoint
     const kintoneEndpoint = 'https://carboncount.kintone.com/k/v1/records.json';
 
@@ -35,14 +33,11 @@
             console.error('Error loading data from Kintone:', error);
             return;
         }
-
+        console.log(user.nickname);
         // Process the response body
         if (body && body.records) {
             // Iterate over each record and do something with the data
-            body.records.forEach(record => {
-                console.log('Username loaded from Kintone:', record.username.value);
-                console.log('Username loaded from Kintone:', record.username.value);
-            });
+            
         } else {
             console.log('No records found in Kintone.');
         }
@@ -58,9 +53,6 @@ function initMap() {
 }
 
 function calculateRoute() {
-
-  loadFromKintone();
-
   // Get the start and end destinations from the input fields
   var start = document.getElementById('start').value;
   var transportationmode=document.getElementById('mode').value;
