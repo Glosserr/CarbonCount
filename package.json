@@ -1,5 +1,5 @@
 {
-  "name": "auth0-express-webapp-sample",
+  "name": "carboncount",
   "scripts": {},
   "dependencies": {
     "debug": "~3.2.7",
