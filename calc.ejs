@@ -1,9 +1,5 @@
 
 <script>
-Distance = 10.0;
-VehicleNum = 1; //0-5 numbering scheme for each vehicle
-VehicleList = [0,31,26,19,495,50];
-KiloList = [0,8.887,8.887,8.887,10.16,8.887];
 AVG_KPM = [0,0.287,0.342,0.468,0.021,0.178];
 Multiplier = [2,1,0.75,0.5,2,2];
 BasePoints = Distance * 10;
@@ -48,5 +44,18 @@ for (var i =0; i<Scores.length; i++){
 
 }
 // can be duplicated to list the miles traveled along the score, same with trips taken.
+
+
+Distance = 10.0;
+VehicleNum = 1; //0-5 numbering scheme for each vehicle
+VehicleList = [0,31,26,19,495,50];
+KiloList = [0,8.887,8.887,8.887,10.16,8.887];
+
+emitCalc()
+{
+    MPG = VehicleList[VehicleNum];
+    KPG = KiloList[VehicleNum];
+    KPM = KPG/KPM;
+}
 
 </script>
