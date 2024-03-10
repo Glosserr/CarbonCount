@@ -57,6 +57,7 @@ function calculateRoute() {
 }
   </script>
   <script async defer
+  m=process.env.MAPS_API;
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIaDjfnwKQRLp_ilAyl7urVNp5bIVPgxU&callback=initMap">
 </script>
 <h3>Plan your next trip</h3>
@@ -71,6 +72,14 @@ function calculateRoute() {
 <div>
   <label for="mode">Specify the travel mode (DRIVING, WALKING, BICYCLING, TRANSIT)</label>
   <input type="text" id="mode" name="mode">
+</div>
+<div>
+  <label for="vehicle">Specify the vehicle (CAR, TRUCK, SUV, TRAIN, BUS, NONE)</label>
+  <input type="text" id="vehicle" name="vehicle">
+</div>
+<div>
+  <label for="passengers">Specify the amount of passengers</label>
+  <input type="text" id="passengers" name="passengers">
 </div>
 <div>
   <button onclick="calculateRoute()">Show Route</button>
