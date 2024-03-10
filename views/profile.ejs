@@ -5,11 +5,11 @@
   <% if (user.picture) { %>
     <img class="block py-3" src="<%= user.picture %>" width="300">
   <% } %>
+  
   <script>
-    var map,travelTime,travelDistance,profileUrl;
-    const request = require('request');
 
   function initMap() {
+
   // Initialize the map
   map = new google.maps.Map(document.getElementById('map'), {
     center: { lat: 40.7128, lng: -74.006 },

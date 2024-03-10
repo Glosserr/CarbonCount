@@ -67,7 +67,6 @@ function loadFromKintone() {
                 console.log('Miles loaded from Kintone:', record.miles.value);
                 console.log('Emissions loaded from Kintone:', record.emissions.value);
                 console.log('Points loaded from Kintone:', record.points.value);
-                console.log(traveltime);
               }   
           });
       } else {
@@ -138,4 +137,5 @@ function uploadToKintone(nick) {
     });
 }
 
-module.exports = app;
+
+
