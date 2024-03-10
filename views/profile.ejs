@@ -8,41 +8,6 @@
   <script>
     var map;
     const request = require('request');
-    function loadFromKintone(){
-    // Kintone API endpoint
-    const kintoneEndpoint = 'https://carboncount.kintone.com/k/v1/records.json';
-
-    // Kintone app ID from where you want to load the data
-    const appId = '1';
-
-    // Kintone API token for authentication
-    const apiToken = 'A8mvHRY5yrVQhIkcTSDW9amw4bX3J4XfXv3U2cLm';
-
-    // Make a GET request to load data from Kintone
-    request.get({
-        url: kintoneEndpoint,
-        headers: {
-            'X-Cybozu-API-Token': apiToken
-        },
-        qs: {
-            app: appId
-        },
-        json: true
-    }, (error, response, body) => {
-        if (error) {
-            console.error('Error loading data from Kintone:', error);
-            return;
-        }
-        console.log(user.nickname);
-        // Process the response body
-        if (body && body.records) {
-            // Iterate over each record and do something with the data
-            
-        } else {
-            console.log('No records found in Kintone.');
-        }
-    });
-}
 
 function initMap() {
   // Initialize the map
@@ -91,6 +56,7 @@ function calculateRoute() {
     }
   );
 }
+
   </script>
   <script async defer
   m=process.env.MAPS_API;

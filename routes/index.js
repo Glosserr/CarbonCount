@@ -2,6 +2,7 @@ var router = require('express').Router();
 const request = require('request');
 const { requiresAuth } = require('express-openid-connect');
 const uploadedUsernames = new Set();
+var nick;
 loadFromKintone();
 
 router.get('/', function (req, res, next) {
@@ -12,8 +13,9 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/profile', requiresAuth(), function (req, res, next) {
-  const nick = req.oidc.user.nickname;
+  nick = req.oidc.user.nickname;
   uploadToKintone(nick);
+  loadFromKintone();
   res.render('profile', {
     userProfile: JSON.stringify(req.oidc.user, null, 2),
   });
@@ -59,6 +61,10 @@ function loadFromKintone() {
           body.records.forEach(record => {
               console.log('Username loaded from Kintone:', record.username.value);
               uploadedUsernames.add(record.username.value);
+              if (record.username.value===nick)
+              {
+                  console.log('Hi');
+              }
           });
       } else {
           console.log('No records found in Kintone.');
