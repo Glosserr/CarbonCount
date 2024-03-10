@@ -11,12 +11,11 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/profile', requiresAuth(), function (req, res, next) {
-  const nick = toString(req.oidc.user.nickname);
+  const nick = req.oidc.user.nickname;
 
   uploadToKintone(nick);
   res.render('profile', {
     userProfile: JSON.stringify(req.oidc.user, null, 2),
-    title: 'Profile page'
   });
 });
 router.get('/leaderboard', requiresAuth(), function (req, res, next) {
@@ -45,32 +44,32 @@ function uploadToKintone(nick) {
 
     // Data to be uploaded
     const data = {
-        app: appId,
-        records: [
+        'app': appId,
+        'record':
             {
-                username: {value:nick}
+                'username': {
+                  'value': nick
+                }
             }
-        ],
     };
+
     // Make a POST request to upload data to Kintone
-    fetch(kintoneEndpoint, {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json',
-          'X-Cybozu-API-Token': apiToken
-      },
-      body: JSON.stringify(data)
-  })
-  .then(response => response.json())
-  .then(result => {
-      console.log('Data uploaded to Kintone:', result);
+    request.post({
+        url: kintoneEndpoint,
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Cybozu-API-Token': apiToken
+        },
+        json: true,
+        body: data
+    }, (error, response, body) => {
+        if (error) {
+            console.error('Error uploading data to Kintone:', error);
+            return;
+        }
+        console.log('Data uploaded to Kintone:', body);
       uploadedUsernames.add(nick);
-  })
-  .catch(error => {
-      console.error('Error uploading data to Kintone:', error);
-      
     });
-    uploadedUsernames.add(nick);
 }
 
 
