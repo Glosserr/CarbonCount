@@ -1,4 +1,5 @@
 var router = require('express').Router();
+const request = require('request');
 const { requiresAuth } = require('express-openid-connect');
 
 router.get('/', function (req, res, next) {
@@ -9,21 +10,62 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/profile', requiresAuth(), function (req, res, next) {
+  const userProfile = req.oidc.user;
+  const username ='h';
   res.render('profile', {
     userProfile: JSON.stringify(req.oidc.user, null, 2),
     title: 'Profile page'
   });
+  if(!userProfile.requiresAuth()){
+    uploadToKintone(username);
+  }
 });
 router.get('/leaderboard', requiresAuth(), function (req, res, next) {
   res.render('leaderboard', {
-    userProfile: JSON.stringify(req.oidc.user, null, 2),
-    title: 'Profile page'
+  title: 'Leaderboard'
   });
 });
 
-const kintone = require('kintone-nodejs-sdk');
-
-let kintoneAuthWithAPIToken = (new kintone.Auth()).setApiToken('A8mvHRY5yrVQhIkcTSDW9amw4bX3J4XfXv3U2cLm');
-let kintoneConnection = new kintone.Connection('your.FQDN.tld', kintoneAuthWithAPIToken);
-
 module.exports = router;
+
+//Function to upload username to Kintone
+function uploadToKintone(username) {
+    // Kintone API endpoint
+    const kintoneEndpoint = 'https://carboncount.kintone.com/k/v1/record.json';
+
+    // Kintone app ID where you want to upload the data
+    const appId = '1';
+
+    // Kintone API token for authentication
+    const apiToken = 'A8mvHRY5yrVQhIkcTSDW9amw4bX3J4XfXv3U2cLm';
+
+    // Data to be uploaded
+    const data = {
+        app: appId,
+        records: [
+            {
+                username: { value: username }
+            }
+        ]
+    };
+
+    // Make a POST request to upload data to Kintone
+    request.post({
+        url: kintoneEndpoint,
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Cybozu-API-Token': apiToken
+        },
+        json: true,
+        body: data
+    }, (error, response, body) => {
+        if (error) {
+            console.error('Error uploading data to Kintone:', error);
+            return;
+        }
+
+        console.log('Data uploaded to Kintone:', body);
+    });
+}
+
+

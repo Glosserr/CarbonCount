@@ -23,6 +23,8 @@ const config = {
 };
 
 const port = process.env.PORT || 3000;
+const mkey = process.env.MAP_API;
+const kkey = process.env.KINTONE_API;
 if (!config.baseURL && !process.env.BASE_URL && process.env.PORT && process.env.NODE_ENV !== 'production') {
   config.baseURL = `http://localhost:${port}`;
 }
