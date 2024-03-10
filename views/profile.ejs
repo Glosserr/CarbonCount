@@ -46,7 +46,8 @@ function calculateRoute() {
         var route = response.routes[0];
         travelTime = route.legs[0].duration.text;
         travelDistance = route.legs[0].distance.text;
-        
+        document.getElementById('travelTime').innerText = 'Travel Time: ' + travelTime;
+        document.getElementById('travelDistance').innerText = 'Travel Distance: ' + travelDistance;
       } 
       else {
         window.alert('Directions request failed due to ' + status);
