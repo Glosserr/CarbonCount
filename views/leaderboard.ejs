@@ -1,0 +1,83 @@
+<%- include('partials/header') -%>
+<script>
+const HighScores = (props) => {
+    return (
+        <div>
+            <h1>High Scores</h1>
+            <table className="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Username</th>
+                        <th>High Score</th>
+                    </tr>
+                </thead>
+                <tbody>                   
+                    {props.user.sort((a, b) => Math.max(...b.scoreHistory) - Math.max(...a.scoreHistory)).map((user, index) => //sort through all players based on their top scores them display them in order top to last
+                        <tr key={index}>
+                            <th>{index + 1}</th>
+                            <td>{user.username}</td>
+                            <td>{Math.max(...user.scoreHistory)}</td>
+                        </tr>
+                    )}
+                </tbody>
+            </table>
+
+        </div>
+    );
+}
+
+const mapStateToProps = state => ({
+    user: state.users,
+    allScores: state.allScores
+})
+
+
+
+
+</script>
+
+<h3>TOP CARBON COUTNERS</h3>
+
+  <div>
+    <p>1. John Doe</p> <p></p>
+  </div>
+  
+  <div>
+    <p>2. John Doe 90</p>
+  </div>
+  
+  <div>
+    <p>3. John Doe 80</p>
+  </div>
+  
+  <div>
+    <p>4. John Doe 70</p>
+  </div>
+  
+  <div>
+    <p>5. John Doe 60</p>
+  </div>
+  
+  <div>
+    <p>6. John Doe 50</p>
+  </div>
+  
+  <div>
+    <p>7. John Doe 40</p>
+  </div>
+  
+  <div>
+    <p>8. John Doe 30</p>
+  </div>
+  
+  <div>
+    <p>9. John Doe 20</p>
+  </div>
+  
+  <div>
+    <p>10. John Doe 10</p>
+  </div>
+  
+  
+<%- include('partials/footer') -%>
