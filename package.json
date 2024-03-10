@@ -1,6 +1,7 @@
 {
   "name": "carboncount",
-  "scripts": {},
+  "scripts": {"start": "node server.js",
+              "build": "npm install"},
   "dependencies": {
     "debug": "~3.2.7",
     "dotenv": "^6.1.0",
