@@ -27,6 +27,18 @@ var scoreHolders = {
     "Ron":50, "Pop":70, "Non":30, "Joe":100, "Bon":20, "Don":40, "John":80, "Scott":90, "Jake":10, "Jess":60
 }
 
+var dict = {}; //dictionary we pull from/database
+dict_length = 10; //replace with real database length of sample
+var names = [];
+var vals =[];
+var temp_dict = {};
+
+dict[name]=score;
+for(i =0; i<dict_length; i++){
+    temp_dict.add(dict[i]);
+}
+
+
 var Scores = Object.keys(scoreHolders);
 Scores.sort();
 for (var i =0; i<Scores.length; i++){
