@@ -1,6 +1,7 @@
 var router = require('express').Router();
 const request = require('request');
 const { requiresAuth } = require('express-openid-connect');
+const uploadedUsernames = new Set();
 
 router.get('/', function (req, res, next) {
   res.render('index', {
@@ -10,15 +11,13 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/profile', requiresAuth(), function (req, res, next) {
-  const userProfile = req.oidc.user;
-  const username ='h';
+  const nick = req.oidc.user.nickname;
+
+  uploadToKintone(nick);
   res.render('profile', {
     userProfile: JSON.stringify(req.oidc.user, null, 2),
     title: 'Profile page'
   });
-  if(!userProfile.requiresAuth()){
-    uploadToKintone(username);
-  }
 });
 router.get('/leaderboard', requiresAuth(), function (req, res, next) {
   res.render('leaderboard', {
@@ -29,7 +28,12 @@ router.get('/leaderboard', requiresAuth(), function (req, res, next) {
 module.exports = router;
 
 //Function to upload username to Kintone
-function uploadToKintone(username) {
+function uploadToKintone(nick) {
+  if (uploadedUsernames.has(nick)) {
+    console.log('Username already uploaded to Kintone:', nick);
+    return;
+  }
+  console.log('Uploading username to Kintone:', nick);
     // Kintone API endpoint
     const kintoneEndpoint = 'https://carboncount.kintone.com/k/v1/record.json';
 
@@ -44,9 +48,9 @@ function uploadToKintone(username) {
         app: appId,
         records: [
             {
-                username: { value: username }
+                username: {value:nick}
             }
-        ]
+        ],
     };
 
     // Make a POST request to upload data to Kintone
@@ -63,8 +67,8 @@ function uploadToKintone(username) {
             console.error('Error uploading data to Kintone:', error);
             return;
         }
-
         console.log('Data uploaded to Kintone:', body);
+      uploadedUsernames.add(nick);
     });
 }
 
