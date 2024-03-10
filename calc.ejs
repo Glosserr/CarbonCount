@@ -1,0 +1,40 @@
+
+<script>
+Distance = 10.0;
+VehicleNum = 1; //0-5 numbering scheme for each vehicle
+VehicleList = [0,31,26,19,495,50];
+KiloList = [0,8.887,8.887,8.887,10.16,8.887];
+AVG_KPM = [0,0.287,0.342,0.468,0.021,0.178];
+Multiplier = [2,1,0.75,0.5,2,2];
+BasePoints = Distance * 10;
+
+VehicleCalc()
+{
+    MPG = VehicleList[VehicleNum];
+    KPG = KiloList[VehicleNum];
+    KPM = KPG/KPM;
+    AVG_Diff = abs(KPM - AVG_KPM[VehicleNum]);
+    PointBase = Multiplier[VehicleNum] * BasePoints;
+    PointBonus = 100 * AVG_Diff;
+    PointTot = PointBase + PointBonus;
+}
+</script>
+
+
+<script>
+
+var scoreHolders = {
+    "Ron":50, "Pop":70, "Non":30, "Joe":100, "Bon":20, "Don":40, "John":80, "Scott":90, "Jake":10, "Jess":60
+}
+
+var Scores = Object.keys(scoreHolders);
+Scores.sort();
+for (var i =0; i<Scores.length; i++){
+    var Score = Scores[i];
+    var Name = scoreHolders[score];
+    // at this point the loop will shoot out the scores in the dictionary in sorted order.
+
+}
+// can be duplicated to list the miles traveled along the score, same with trips taken.
+
+</script>

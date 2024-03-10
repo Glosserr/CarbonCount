@@ -1,36 +1,9 @@
 <%- include('partials/header') -%>
 <script>
-const HighScores = (props) => {
-    return (
-        <div>
-            <h1>High Scores</h1>
-            <table className="table table-striped">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Username</th>
-                        <th>High Score</th>
-                    </tr>
-                </thead>
-                <tbody>                   
-                    {props.user.sort((a, b) => Math.max(...b.scoreHistory) - Math.max(...a.scoreHistory)).map((user, index) => //sort through all players based on their top scores them display them in order top to last
-                        <tr key={index}>
-                            <th>{index + 1}</th>
-                            <td>{user.username}</td>
-                            <td>{Math.max(...user.scoreHistory)}</td>
-                        </tr>
-                    )}
-                </tbody>
-            </table>
 
-        </div>
-    );
-}
+const highscores = new Set();
+9+
 
-const mapStateToProps = state => ({
-    user: state.users,
-    allScores: state.allScores
-})
 
 
 
