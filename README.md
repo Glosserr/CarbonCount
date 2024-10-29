@@ -7,4 +7,4 @@ Also utilizing Kintone's API we were able to keep a database for users who signe
 Finally we used Auth0 for authentication and user account creation for the app!
 
 ## Languages
-We utilized the HTML, CSS, and JavaScript for this project, through VScode and and github!
+We utilized HTML, CSS, and JavaScript for this project, through VScode and and github!
